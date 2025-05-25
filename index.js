@@ -1,11 +1,14 @@
 const { Client } = require('discord.js-selfbot-v13');
+const dotenv = require('dotenv');
+dotenv.config();
 
 const client = new Client();
 
-const CHANNEL = process.env.CHANNEL_ID; // Replace with your channel ID
-const BUMPER = process.env.BUMPER_ID; // Replace with the ID of the user who will send the bump command
-const BUMP_COMMAND = '/bump'; // The command to send
-const TOKEN = process.env.DISCORD_TOKEN; // Replace with your bot token
+// Ensure all environment variables are strings
+const CHANNEL = String(process.env.CHANNEL_ID || ''); // Replace with your channel ID
+const BUMPER = String(process.env.BUMPER_ID || ''); // Replace with the ID of the user who will send the bump command
+const BUMP_COMMAND = 'bump'; // The command to send (without the slash prefix)
+const TOKEN = String(process.env.DISCORD_TOKEN || ''); // Replace with your bot token
 
 client.on('ready', async () => {
     console.log(`${client.user.username} is ready!`);
